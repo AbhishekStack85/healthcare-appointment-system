@@ -1,0 +1,420 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f9fc;
+  color: #1f2937;
+}
+
+/* Navbar */
+.navbar {
+  height: 70px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.navbar h2 {
+  color: #0f766e;
+  font-size: 28px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #0f766e;
+}
+
+.nav-links button {
+  background: #0f766e;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Hero */
+.hero {
+  min-height: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #e6fffa, #f5f9fc);
+  padding: 60px 20px;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 55px;
+  color: #134e4a;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 20px;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.hero-buttons button {
+  padding: 14px 25px;
+  border: none;
+  border-radius: 8px;
+  background: #0f766e;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 8px;
+}
+
+.hero-buttons button:hover {
+  background: #115e59;
+}
+
+.secondary-btn {
+  background: white !important;
+  color: #0f766e !important;
+  border: 2px solid #0f766e !important;
+}
+
+/* Features */
+.features {
+  padding: 60px 50px;
+  text-align: center;
+}
+
+.features > h2 {
+  font-size: 32px;
+  color: #134e4a;
+  margin-bottom: 40px;
+}
+
+.feature-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  background: white;
+  width: 280px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #134e4a;
+}
+
+.feature-card p {
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Login Page */
+
+.login-section {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f9fc;
+  padding: 40px 20px;
+}
+
+.login-card {
+  width: 420px;
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.login-card h1 {
+  text-align: center;
+  color: #134e4a;
+  margin-bottom: 10px;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.login-card > p {
+  text-align: center;
+  color: #64748b;
+  margin-bottom: 30px;
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-card label {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #374151;
+}
+
+.login-card input {
+  padding: 13px;
+  margin-bottom: 20px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+  color: #1f2937;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: #0f766e;
+}
+
+.login-btn {
+  padding: 14px;
+  background: #0f766e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background: #115e59;
+}
+
+.register-text {
+  margin-top: 25px;
+}
+
+.register-text a {
+  color: #0f766e;
+  font-weight: bold;
+  text-decoration: none;
+}
+.login-message {
+  text-align: center;
+  margin-top: 20px;
+  color: #0f766e;
+  font-weight: bold;
+}
+
+/* Dashboard */
+
+.dashboard {
+  min-height: 100vh;
+  background: #f1f8f7;
+  padding: 30px 60px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  color: #0f766e;
+  font-size: 28px;
+}
+
+.dashboard-header p {
+  margin: 5px 0 0;
+  color: #64748b;
+}
+
+.logout-btn {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.welcome-section {
+  margin: 40px 0 30px;
+}
+
+.welcome-section h2 {
+  font-size: 30px;
+  color: #134e4a;
+  margin-bottom: 8px;
+}
+
+.welcome-section p {
+  color: #64748b;
+  font-size: 17px;
+}
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.card-icon {
+  font-size: 45px;
+  margin-bottom: 15px;
+}
+
+.dashboard-card h3 {
+  color: #134e4a;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.dashboard-card p {
+  color: #64748b;
+  line-height: 1.6;
+  min-height: 50px;
+}
+
+.dashboard-card button {
+  margin-top: 15px;
+  background: #0f766e;
+  color: white;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.dashboard-card button:hover {
+  background: #115e59;
+}
+/* Doctor Dashboard */
+
+.doctor-dashboard {
+  min-height: 100vh;
+  background: #f1f8f7;
+  padding: 30px 60px;
+}
+
+.doctor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.doctor-header h1 {
+  margin: 0;
+  color: #0f766e;
+  font-size: 28px;
+}
+
+.doctor-header p {
+  margin: 5px 0 0;
+  color: #64748b;
+}
+
+.doctor-welcome {
+  margin: 40px 0 30px;
+}
+
+.doctor-welcome h2 {
+  color: #134e4a;
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.doctor-welcome p {
+  color: #64748b;
+  font-size: 17px;
+}
+
+.doctor-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.doctor-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.doctor-card .card-icon {
+  font-size: 45px;
+  margin-bottom: 15px;
+}
+
+.doctor-card h3 {
+  color: #134e4a;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.doctor-card p {
+  color: #64748b;
+  line-height: 1.6;
+  min-height: 50px;
+}
+
+.doctor-card button {
+  margin-top: 15px;
+  background: #0f766e;
+  color: white;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.doctor-card button:hover {
+  background: #115e59;
+}
