@@ -8,7 +8,7 @@ function Appointments() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://127.0.0.1:8000/appointments/${appointmentId}`,
+        `${import.meta.env.VITE_API_URL}/appointments/${appointmentId}`,
         {
           method: "DELETE",
           headers: {
@@ -39,7 +39,7 @@ function Appointments() {
         const token = localStorage.getItem("token");
 
         const response = await fetch(
-          "http://127.0.0.1:8000/appointments",
+          `${import.meta.env.VITE_API_URL}/appointments`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

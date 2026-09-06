@@ -9,8 +9,8 @@ function Doctors() {
     const fetchDoctors = async () => {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/doctors"
-        );
+  `${import.meta.env.VITE_API_URL}/doctors`
+);
 
         const data = await response.json();
 

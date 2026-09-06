@@ -17,7 +17,7 @@ function Register() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/register",
+        `${import.meta.env.VITE_API_URL}/register`,
         {
           method: "POST",
           headers: {
@@ -56,7 +56,6 @@ function Register() {
         <p>Register for your HealthCare account</p>
 
         <form onSubmit={handleRegister}>
-
           <label>Name</label>
 
           <input
@@ -100,7 +99,6 @@ function Register() {
           <button type="submit">
             Register
           </button>
-
         </form>
 
         {message && (
