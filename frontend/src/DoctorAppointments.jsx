@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 function DoctorAppointments() {
   const [appointments, setAppointments] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleStatusUpdate = async (appointmentId, newStatus) => {
     try {
@@ -65,87 +66,264 @@ function DoctorAppointments() {
         }
       } catch (error) {
         console.log("Doctor appointments fetch error:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchAppointments();
   }, []);
 
+  const getStatus = (appointment) => {
+    return appointment.status || "pending";
+  };
+
   return (
     <div className="doctor-appointments-page">
-      <h1>My Appointments</h1>
 
-      <p>
-        View appointments booked by your patients.
-      </p>
+      {/* Header */}
+      <div className="doctor-appointments-header">
 
-      {appointments.length === 0 ? (
-        <p>No appointments found.</p>
-      ) : (
-        appointments.map((appointment) => (
-          <div
-            className="doctor-appointment-card"
-            key={appointment._id}
-          >
-            <h2>Patient Appointment</h2>
+        <div>
+          <span className="appointments-label">
+            🩺 DOCTOR PORTAL
+          </span>
 
-            <p>
-              <strong>Patient:</strong>{" "}
-              {appointment.patient_email}
-            </p>
+          <h1>My Appointments</h1>
 
-            <p>
-              <strong>Doctor ID:</strong>{" "}
-              {appointment.doctor_id}
-            </p>
+          <p>
+            Manage appointments and respond to requests from your patients.
+          </p>
+        </div>
 
-            <p>
-              <strong>Date & Time:</strong>{" "}
-              {appointment.appointment_date}
-            </p>
+        <div className="appointments-header-icon">
+          📅
+        </div>
 
-            <p>
-              <strong>Status:</strong>{" "}
-              {appointment.status || "pending"}
-            </p>
+      </div>
 
-            {(!appointment.status ||
-              appointment.status === "pending") && (
-              <div>
-                <button
-                  onClick={() =>
-                    handleStatusUpdate(
-                      appointment._id,
-                      "accepted"
-                    )
-                  }
-                >
-                  Accept
-                </button>
+      {/* Summary */}
+      <div className="appointment-summary">
 
-                <button
-                  onClick={() =>
-                    handleStatusUpdate(
-                      appointment._id,
-                      "rejected"
-                    )
-                  }
-                >
-                  Reject
-                </button>
-              </div>
-            )}
-
-            {appointment.status === "accepted" && (
-              <p>✅ Appointment Accepted</p>
-            )}
-
-            {appointment.status === "rejected" && (
-              <p>❌ Appointment Rejected</p>
-            )}
+        <div className="summary-box">
+          <span>📋</span>
+          <div>
+            <strong>{appointments.length}</strong>
+            <small>Total Appointments</small>
           </div>
-        ))
+        </div>
+
+        <div className="summary-box">
+          <span>⏳</span>
+          <div>
+            <strong>
+              {
+                appointments.filter(
+                  (a) => getStatus(a) === "pending"
+                ).length
+              }
+            </strong>
+            <small>Pending</small>
+          </div>
+        </div>
+
+        <div className="summary-box">
+          <span>✅</span>
+          <div>
+            <strong>
+              {
+                appointments.filter(
+                  (a) => getStatus(a) === "accepted"
+                ).length
+              }
+            </strong>
+            <small>Accepted</small>
+          </div>
+        </div>
+
+        <div className="summary-box">
+          <span>❌</span>
+          <div>
+            <strong>
+              {
+                appointments.filter(
+                  (a) => getStatus(a) === "rejected"
+                ).length
+              }
+            </strong>
+            <small>Rejected</small>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Section Title */}
+      <div className="appointments-section-title">
+        <div>
+          <h2>Patient Appointments</h2>
+          <p>Review and manage your appointment requests.</p>
+        </div>
+      </div>
+
+      {/* Loading */}
+      {loading && (
+        <div className="appointments-loading">
+          <div className="appointment-spinner"></div>
+          <p>Loading appointments...</p>
+        </div>
       )}
+
+      {/* Empty */}
+      {!loading && appointments.length === 0 && (
+        <div className="appointments-empty">
+          <div className="empty-icon">📅</div>
+          <h3>No appointments yet</h3>
+          <p>
+            When patients book an appointment, it will appear here.
+          </p>
+        </div>
+      )}
+
+      {/* Appointment Cards */}
+      {!loading && appointments.length > 0 && (
+        <div className="doctor-appointments-grid">
+
+          {appointments.map((appointment) => {
+            const status = getStatus(appointment);
+
+            return (
+              <div
+                className="doctor-appointment-card-new"
+                key={appointment._id}
+              >
+
+                {/* Card Header */}
+                <div className="appointment-card-top">
+
+                  <div className="patient-info">
+
+                    <div className="patient-avatar">
+                      👤
+                    </div>
+
+                    <div>
+                      <h3>Patient</h3>
+                      <p>{appointment.patient_email}</p>
+                    </div>
+
+                  </div>
+
+                  <span
+                    className={`appointment-status ${status}`}
+                  >
+                    {status === "accepted" && "✓ Accepted"}
+                    {status === "rejected" && "✕ Rejected"}
+                    {status === "pending" && "⏳ Pending"}
+                  </span>
+
+                </div>
+
+                {/* Appointment Details */}
+                <div className="appointment-details">
+
+                  <div className="appointment-detail-box">
+                    <span>📅</span>
+
+                    <div>
+                      <small>Appointment Date</small>
+
+                      <strong>
+                        {new Date(
+                          appointment.appointment_date
+                        ).toLocaleDateString("en-IN", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </strong>
+                    </div>
+                  </div>
+
+                  <div className="appointment-detail-box">
+                    <span>🕐</span>
+
+                    <div>
+                      <small>Appointment Time</small>
+
+                      <strong>
+                        {new Date(
+                          appointment.appointment_date
+                        ).toLocaleTimeString("en-IN", {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </strong>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Doctor ID */}
+                <div className="appointment-doctor-id">
+                  <span>🩺</span>
+
+                  <div>
+                    <small>Doctor ID</small>
+                    <p>{appointment.doctor_id}</p>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                {status === "pending" && (
+                  <div className="appointment-actions">
+
+                    <button
+                      className="accept-btn"
+                      onClick={() =>
+                        handleStatusUpdate(
+                          appointment._id,
+                          "accepted"
+                        )
+                      }
+                    >
+                      ✓ Accept Appointment
+                    </button>
+
+                    <button
+                      className="reject-btn"
+                      onClick={() =>
+                        handleStatusUpdate(
+                          appointment._id,
+                          "rejected"
+                        )
+                      }
+                    >
+                      ✕ Reject
+                    </button>
+
+                  </div>
+                )}
+
+                {/* Final Status */}
+                {status === "accepted" && (
+                  <div className="appointment-result accepted-result">
+                    ✓ This appointment has been accepted
+                  </div>
+                )}
+
+                {status === "rejected" && (
+                  <div className="appointment-result rejected-result">
+                    ✕ This appointment has been rejected
+                  </div>
+                )}
+
+              </div>
+            );
+          })}
+
+        </div>
+      )}
+
     </div>
   );
 }

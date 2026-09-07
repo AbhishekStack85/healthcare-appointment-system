@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function BookAppointment() {
   const { doctorId } = useParams();
+  const navigate = useNavigate();
 
   const [appointmentDate, setAppointmentDate] = useState("");
   const [appointmentTime, setAppointmentTime] = useState("");
@@ -17,9 +18,9 @@ function BookAppointment() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-  `${import.meta.env.VITE_API_URL}/appointments`,
-  {
-    method: "POST",
+        `${import.meta.env.VITE_API_URL}/appointments`,
+        {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -45,37 +46,106 @@ function BookAppointment() {
 
   return (
     <div className="booking-page">
-      <h1>Book Appointment</h1>
 
+      {/* Header */}
+      <div className="booking-header">
+        <div>
+          <span className="booking-badge">🏥 HealthCare</span>
+
+          <h1>Book Your Appointment</h1>
+
+          <p>
+            Schedule an appointment with your trusted healthcare provider.
+          </p>
+        </div>
+
+        <div className="booking-icon">
+          📅
+        </div>
+      </div>
+
+      {/* Booking Card */}
       <div className="booking-card">
-        <h2>Appointment Details</h2>
+
+        <div className="booking-card-header">
+          <div>
+            <h2>Appointment Details</h2>
+            <p>Select your preferred date and time</p>
+          </div>
+
+          <div className="doctor-small-icon">
+            👨‍⚕️
+          </div>
+        </div>
 
         <form onSubmit={handleBooking}>
-          <label>Appointment Date</label>
 
-          <input
-            type="date"
-            value={appointmentDate}
-            onChange={(e) => setAppointmentDate(e.target.value)}
-            required
-          />
+          <div className="booking-field">
+            <label>Appointment Date</label>
 
-          <label>Appointment Time</label>
+            <div className="input-wrapper">
+              <span>📅</span>
 
-          <input
-            type="time"
-            value={appointmentTime}
-            onChange={(e) => setAppointmentTime(e.target.value)}
-            required
-          />
+              <input
+                type="date"
+                value={appointmentDate}
+                onChange={(e) => setAppointmentDate(e.target.value)}
+                required
+              />
+            </div>
+          </div>
 
-          <button type="submit">
+          <div className="booking-field">
+            <label>Appointment Time</label>
+
+            <div className="input-wrapper">
+              <span>🕐</span>
+
+              <input
+                type="time"
+                value={appointmentTime}
+                onChange={(e) => setAppointmentTime(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="booking-info">
+            <span>🔒</span>
+            <p>
+              Your appointment information is secure and protected.
+            </p>
+          </div>
+
+          <button type="submit" className="confirm-booking-btn">
             Confirm Booking
+            <span>→</span>
           </button>
+
         </form>
 
-        {message && <p>{message}</p>}
+        {message && (
+          <div
+            className={
+              message.includes("successfully")
+                ? "booking-message success"
+                : "booking-message"
+            }
+          >
+            {message.includes("successfully") ? "✅ " : "ℹ️ "}
+            {message}
+          </div>
+        )}
+
+        <button
+          className="back-btn"
+          onClick={() => navigate("/doctors")}
+        >
+          ← Back to Doctors
+        </button>
+
       </div>
+
     </div>
   );
 }

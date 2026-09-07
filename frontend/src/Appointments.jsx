@@ -64,48 +64,134 @@ function Appointments() {
 
   return (
     <div className="appointments-page">
-      <h1>My Appointments</h1>
 
-      <p>View and manage your booked appointments.</p>
+      {/* Header */}
+      <div className="appointments-header">
+        <div>
+          <span className="appointments-badge">
+            🏥 HealthCare
+          </span>
 
+          <h1>My Appointments</h1>
+
+          <p>
+            View and manage all your booked appointments in one place.
+          </p>
+        </div>
+
+        <div className="appointments-icon">
+          📅
+        </div>
+      </div>
+
+      {/* Appointment List */}
       {appointments.length === 0 ? (
-        <p>No appointments found.</p>
+        <div className="empty-appointments">
+          <div className="empty-icon">📅</div>
+          <h2>No Appointments Yet</h2>
+          <p>
+            You haven't booked any appointments yet.
+          </p>
+        </div>
       ) : (
-        appointments.map((appointment) => (
-          <div
-            className="appointment-card"
-            key={appointment._id}
-          >
-            <h2>Appointment</h2>
+        <div className="appointments-grid">
 
-            <p>
-              <strong>Doctor ID:</strong>{" "}
-              {appointment.doctor_id}
-            </p>
+          {appointments.map((appointment) => {
 
-            <p>
-              <strong>Patient:</strong>{" "}
-              {appointment.patient_email}
-            </p>
+            const status = appointment.status || "pending";
 
-            <p>
-              <strong>Date & Time:</strong>{" "}
-              {appointment.appointment_date}
-            </p>
+            return (
+              <div
+                className="appointment-card"
+                key={appointment._id}
+              >
 
-            <p>
-              <strong>Status:</strong>{" "}
-              {appointment.status || "pending"}
-            </p>
+                {/* Card Header */}
+                <div className="appointment-card-header">
+                  <div className="appointment-doctor-icon">
+                    👨‍⚕️
+                  </div>
 
-            <button
-              onClick={() => handleCancel(appointment._id)}
-            >
-              Cancel Appointment
-            </button>
-          </div>
-        ))
+                  <div>
+                    <h2>Doctor Appointment</h2>
+                    <p>Healthcare consultation</p>
+                  </div>
+
+                  <span className={`status-badge ${status}`}>
+                    {status === "accepted" && "✓ Accepted"}
+                    {status === "rejected" && "✕ Rejected"}
+                    {status === "pending" && "◷ Pending"}
+                  </span>
+                </div>
+
+                {/* Details */}
+                <div className="appointment-details">
+
+                  <div className="appointment-detail">
+                    <span className="detail-icon">👨‍⚕️</span>
+
+                    <div>
+                      <small>Doctor ID</small>
+                      <strong>{appointment.doctor_id}</strong>
+                    </div>
+                  </div>
+
+                  <div className="appointment-detail">
+                    <span className="detail-icon">👤</span>
+
+                    <div>
+                      <small>Patient</small>
+                      <strong>{appointment.patient_email}</strong>
+                    </div>
+                  </div>
+
+                  <div className="appointment-detail">
+                    <span className="detail-icon">📅</span>
+
+                    <div>
+                      <small>Date & Time</small>
+                      <strong>
+                        {appointment.appointment_date}
+                      </strong>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Status Message */}
+                {status === "accepted" && (
+                  <div className="appointment-status accepted-message">
+                    ✅ Your appointment has been accepted by the doctor.
+                  </div>
+                )}
+
+                {status === "rejected" && (
+                  <div className="appointment-status rejected-message">
+                    ❌ Your appointment was rejected by the doctor.
+                  </div>
+                )}
+
+                {status === "pending" && (
+                  <div className="appointment-status pending-message">
+                    ⏳ Waiting for doctor confirmation.
+                  </div>
+                )}
+
+                {/* Cancel */}
+                <button
+                  className="cancel-appointment-btn"
+                  onClick={() => handleCancel(appointment._id)}
+                >
+                  Cancel Appointment
+                </button>
+
+              </div>
+            );
+          })}
+
+        </div>
       )}
+
     </div>
   );
 }

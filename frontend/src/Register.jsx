@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./App.css";
 
 function Register() {
   const [name, setName] = useState("");
@@ -50,73 +51,234 @@ function Register() {
 
   return (
     <div className="register-page">
-      <div className="register-card">
-        <h1>Create Account</h1>
 
-        <p>Register for your HealthCare account</p>
+      {/* Navbar */}
+      <nav className="register-navbar">
 
-        <form onSubmit={handleRegister}>
-          <label>Name</label>
+        <div
+          className="register-logo"
+          onClick={() => navigate("/")}
+        >
+          <span>✚</span>
+          HealthCare
+        </div>
 
-          <input
-            type="text"
-            placeholder="Enter your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
+        <div className="register-nav-actions">
+          <span>Already have an account?</span>
 
-          <label>Email</label>
-
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          <label>Password</label>
-
-          <input
-            type="password"
-            placeholder="Create a password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-
-          <label>Role</label>
-
-          <select
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <option value="patient">Patient</option>
-            <option value="doctor">Doctor</option>
-          </select>
-
-          <button type="submit">
-            Register
-          </button>
-        </form>
-
-        {message && (
-          <p className="register-message">
-            {message}
-          </p>
-        )}
-
-        <p>
-          Already have an account?{" "}
           <button
-            type="button"
             onClick={() => navigate("/login")}
           >
-            Login
+            Sign In
           </button>
-        </p>
-      </div>
+        </div>
+
+      </nav>
+
+      {/* Register Section */}
+      <section className="register-section">
+
+        <div className="register-container">
+
+          {/* Left Side */}
+          <div className="register-info">
+
+            <div className="register-small-title">
+              JOIN OUR COMMUNITY
+            </div>
+
+            <h1>
+              Better Health
+              <br />
+              <span>Brighter Tomorrow</span>
+            </h1>
+
+            <p className="register-description">
+              Create your account and take the first step
+              towards a healthier, happier you.
+            </p>
+
+            <div className="register-benefits">
+
+              <div className="register-benefit">
+                <div className="benefit-icon">✓</div>
+                <span>Book appointments easily</span>
+              </div>
+
+              <div className="register-benefit">
+                <div className="benefit-icon">👥</div>
+                <span>Access trusted doctors</span>
+              </div>
+
+              <div className="register-benefit">
+                <div className="benefit-icon">📅</div>
+                <span>Manage your appointments</span>
+              </div>
+
+              <div className="register-benefit">
+                <div className="benefit-icon">🛡️</div>
+                <span>Secure and private</span>
+              </div>
+
+            </div>
+
+            <div className="register-illustration">
+              👨‍⚕️
+              <span>❤</span>
+            </div>
+
+          </div>
+
+          {/* Right Side */}
+          <div className="register-form-container">
+
+            <div className="register-form-header">
+              <h2>Create Account</h2>
+
+              <p>
+                Register for your HealthCare account
+              </p>
+            </div>
+
+            <form
+              className="register-form"
+              onSubmit={handleRegister}
+            >
+
+              {/* Name */}
+              <div className="register-field">
+
+                <label>Full Name</label>
+
+                <div className="register-input-wrapper">
+                  <span>👤</span>
+
+                  <input
+                    type="text"
+                    placeholder="Enter your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                  />
+                </div>
+
+              </div>
+
+              {/* Email */}
+              <div className="register-field">
+
+                <label>Email Address</label>
+
+                <div className="register-input-wrapper">
+                  <span>✉</span>
+
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+
+              </div>
+
+              {/* Password */}
+              <div className="register-field">
+
+                <label>Password</label>
+
+                <div className="register-input-wrapper">
+                  <span>🔒</span>
+
+                  <input
+                    type="password"
+                    placeholder="Create a password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+
+              </div>
+
+              {/* Role */}
+              <div className="register-field">
+
+                <label>Account Type</label>
+
+                <div className="role-selection">
+
+                  <button
+                    type="button"
+                    className={
+                      role === "patient"
+                        ? "role-option active"
+                        : "role-option"
+                    }
+                    onClick={() => setRole("patient")}
+                  >
+                    <span>👤</span>
+                    Patient
+                  </button>
+
+                  <button
+                    type="button"
+                    className={
+                      role === "doctor"
+                        ? "role-option active"
+                        : "role-option"
+                    }
+                    onClick={() => setRole("doctor")}
+                  >
+                    <span>🩺</span>
+                    Doctor
+                  </button>
+
+                </div>
+
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                className="create-account-btn"
+              >
+                Create Account
+                <span>→</span>
+              </button>
+
+            </form>
+
+            {/* Message */}
+            {message && (
+              <p className="register-message">
+                {message}
+              </p>
+            )}
+
+            <div className="register-divider">
+              <span></span>
+              <p>OR</p>
+              <span></span>
+            </div>
+
+            <p className="register-login-text">
+              Already have an account?{" "}
+              <button
+                type="button"
+                onClick={() => navigate("/login")}
+              >
+                Sign In
+              </button>
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
     </div>
   );
 }
