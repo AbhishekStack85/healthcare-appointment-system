@@ -14,6 +14,7 @@ app.add_middleware(
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "https://healthcare-appointment-system-ten.vercel.app",
+    "https://healthcare-appointment-system-a7eo104lw-abhishekstack85.vercel.app",
 ],
     allow_credentials=True,
     allow_methods=["*"],
