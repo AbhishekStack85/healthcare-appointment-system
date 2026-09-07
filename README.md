@@ -171,19 +171,22 @@ Patient sees updated status
 ## 🔐 Demo Login Credentials
 
 ### 👤 Patient Account
-
+```text
 **Email:** test12345@gmail.com 
 **Password:** 9155664245
-
+```
 ### 👨‍⚕️ Doctor Account
-
+```text
 **Email:** dr.rahul2026@test.com
 **Password:** Rahul@12345
 
 > These accounts are provided for demonstration purposes.
+```
 🔗 Repository
 GitHub: https://github.com/AbhishekStack85/healthcare-appointment-system
 
+```text
 👨‍💻 Developer
 Abhishek Anand
 Built as a full-stack project to practice JavaScript, React.js, FastAPI, Python, REST APIs, authentication, and MongoDB integration.
+```
