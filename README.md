@@ -90,7 +90,7 @@ healthcare-appointment-system/
 └── README.md
 ```
 ⚙️ Run Locally
-
+```text
 1. Clone the repository
 git clone https://github.com/AbhishekStack85/healthcare-appointment-system.git
 cd healthcare-appointment-system
@@ -106,14 +106,15 @@ Create a .env file:MONGODB_URL=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 Start the backend:uvicorn main:app --reload
 Backend will run at:http://127.0.0.1:8000
-
+```
 3. Frontend Setup
+```text
 Open another terminal:
 cd frontend
 npm install
 npm run dev
 Frontend will run at:http://localhost:5173
-
+```
 🔗 Repository
 GitHub: https://github.com/AbhishekStack85/healthcare-appointment-system
 
