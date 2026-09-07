@@ -115,6 +115,72 @@ npm install
 npm run dev
 Frontend will run at:http://localhost:5173
 ```
+
+## 🎯 Demo
+
+### 🌐 Live Application
+
+Open the live application:
+
+https://healthcare-appointment-system-ten.vercel.app
+
+### 👤 Patient Demo
+
+1. Open the application.
+2. Click **Get Started** or **Register**.
+3. Select **Patient** as the role.
+4. Create a patient account.
+5. Login with the registered account.
+6. Go to **Find Doctors**.
+7. Select a doctor.
+8. Book an appointment by choosing date and time.
+9. Open **My Appointments** to view the appointment.
+10. The appointment will initially show **Pending**.
+11. After the doctor accepts the appointment, the status changes to **Accepted**.
+
+### 👨‍⚕️ Doctor Demo
+
+1. Register a new account and select **Doctor** as the role.
+2. Login with the doctor account.
+3. Open **My Appointments**.
+4. View patient appointment requests.
+5. Click **Accept Appointment** or **Reject**.
+6. The appointment status will be updated for the patient.
+
+### 🔄 Complete Demo Flow
+
+```text
+Patient
+   ↓
+Register / Login
+   ↓
+Find Doctor
+   ↓
+Book Appointment
+   ↓
+Pending
+   ↓
+Doctor Login
+   ↓
+View Appointment
+   ↓
+Accept / Reject
+   ↓
+Patient sees updated status
+```
+## 🔐 Demo Login Credentials
+
+### 👤 Patient Account
+
+**Email:** test12345@gmail.com 
+**Password:** 9155664245
+
+### 👨‍⚕️ Doctor Account
+
+**Email:** dr.rahul2026@test.com
+**Password:** Rahul@12345
+
+> These accounts are provided for demonstration purposes.
 🔗 Repository
 GitHub: https://github.com/AbhishekStack85/healthcare-appointment-system
 
